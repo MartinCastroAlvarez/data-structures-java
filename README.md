@@ -112,3 +112,24 @@ n=7: 1  63  301  350  140  21
 ```bash
 javac Complexity.java && java Complexity 
 ```
+
+## [Linked List](./LinkedList.java)
+```bash
+javac LinkedList.java && java LinkedList
+```
+```bash
+Insert a comma separated list of values:
+>>> 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17
+LinkedList:
+|17|->|16|->|15|->|14|->|13|->|12|->|11|->|10|->|9|->|8|->|7|->|6|->|5|->|4|->|3|->|2|->|1|
+Inverted LinkedList:
+|1|->|2|->|3|->|4|->|5|->|6|->|7|->|8|->|9|->|10|->|11|->|12|->|13|->|14|->|15|->|16|->|17|
+```
+```bash
+Insert a comma separated list of values:
+>>> 
+LinkedList:
+|1|
+Inverted LinkedList:
+|1|
+```
