@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 // -------------------------------------------------------------------
 // Purpose:
@@ -24,7 +25,7 @@ public class StackedQueue<T> implements Queue<T> {
     // Purpose:
     //  The constructor responsible for initializing an empty Queue.
     // -------------------------------------------------------------------
-    public void StackedQueue() {
+    public StackedQueue() {
         empty();
     }
 
@@ -42,7 +43,13 @@ public class StackedQueue<T> implements Queue<T> {
     //  This method is public. Any class can call it.
     //
     // Complexity:
-    //  TODO
+    //  O(N): N x (1 + 1) + 1 + N x (1 + 1)
+    //        One iteration to move the elements of the first Stack
+    //        to the second Stack with Complexity O(N).
+    //        One single operation to push an element into the Stack
+    //        with complexity O(1).
+    //        Another iteration to put the elements of the second Stack
+    //        back into the Previous one with complexity O(N).
     // -------------------------------------------------------------------
     public void shift(T x) {
         // Removing the next element in the Queue and adding
@@ -188,7 +195,12 @@ public class StackedQueue<T> implements Queue<T> {
     //  This method is public. Any class can call it.
     //
     // Complexity:
-    //  TODO
+    // O(N): N x (1 + 1) + 1 + 1 + N x (1 + 1 + 1 + 1) + 1
+    //       One iteration to move the elements of the first Stack into
+    //       the second Stack. O(N).
+    //       Another iteration to move the elements of the second Stack
+    //       back into the first Stack. O(N).
+    //       The rest are just insignificant constant operations.
     // -------------------------------------------------------------------
     public String toString() {
         // Removing the next element in the Queue and adding
@@ -235,7 +247,7 @@ public class StackedQueue<T> implements Queue<T> {
         // Purpose:
         //  The constructor responsible for initializing an empty Stack.
         // -------------------------------------------------------------------
-        public void InternalStack() {
+        public InternalStack() {
             empty();
         }
 
@@ -298,7 +310,7 @@ public class StackedQueue<T> implements Queue<T> {
         //        a reference in memory.
         // -------------------------------------------------------------------
         public K next() {
-            list.get(0);
+            return list.get(0);
         }
 
         // -------------------------------------------------------------------
@@ -388,6 +400,66 @@ public class StackedQueue<T> implements Queue<T> {
         public String toString() {
             return list.toString();
         }
+
+    }
+
+    // -------------------------------------------------------------------
+    // Purpose:
+    //  Main method of the Java Class.
+    //  This method retrieves a list of values from STDIN, prints the
+    //  contents of the QUeue.
+    // -------------------------------------------------------------------
+    public static void main(String args[]) {
+
+        // Declaring variables.
+        Scanner scanner;
+        StackedQueue<String> queue;
+        String[] values;
+        Integer unshifted;
+
+        // Initializing variables.
+        queue = new StackedQueue<String>();
+        unshifted = 0;
+
+        // Just a test here:
+        /*
+        queue.shift("1");
+        queue.shift("2");
+        queue.shift("3");
+        queue.shift("4");
+        queue.shift("5");
+        queue.shift("6");
+        queue.shift("7");
+        queue.unshift();
+        queue.unshift();
+        */
+
+        // Collecting list data from STDIN.
+        scanner = new Scanner(System.in);
+        System.out.println("Insert a comma separated list of values:");
+        System.out.print(">>> ");
+        values = scanner.next().split(",");
+        // Adding elements to the LinkedList.
+        for (int i = 0; i < values.length; i++) {
+            queue.shift(values[i]);
+        }
+
+        // Doing the same but for B now.
+        scanner = new Scanner(System.in);
+        try {
+            System.out.println("How many elements to unshift from the Queue?");
+            System.out.print(">>> ");
+            unshifted = scanner.nextInt();
+        } catch (java.util.InputMismatchException error) {}
+
+        // Unshifting from the Queue.
+        for (int i = 0; i < unshifted; i++) {
+            queue.unshift();
+        }
+
+        // Printing LinkedList before inverting it.
+        System.out.println("Queue:");
+        System.out.println(queue);
 
     }
 

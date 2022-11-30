@@ -312,6 +312,7 @@ public class LinkedList<T> {
         } else if (i == 0) {
             // Removing the first element has constant complexity.
             firstNode = firstNode.follow();
+            length--;
             return true;
         } else {
             // Just a Java native operation.
@@ -325,6 +326,7 @@ public class LinkedList<T> {
             }
             // More java constant operations.
             node.link(node.follow().follow());
+            length--;
             return true;
         }
     }

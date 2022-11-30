@@ -138,3 +138,27 @@ Inverted LinkedList:
 ```bash
 javac StackedQueue.java && java StackedQueue
 ```
+```bash
+Insert a comma separated list of values:
+>>> 1,2,3,4,5,6,7,8,9,10
+How many elements to unshift from the Queue?
+>>> 3
+Queue:
+10, 9, 8, 7, 6, 5, 4, 
+```
+```bash
+Insert a comma separated list of values:
+>>> 1,2,4 
+How many elements to unshift from the Queue?
+>>> 5
+Queue:
+<empty>
+```
+```bash
+Insert a comma separated list of values:
+>>> 1
+How many elements to unshift from the Queue?
+>>> 0
+Queue:
+1, 
+```
