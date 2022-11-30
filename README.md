@@ -133,3 +133,8 @@ LinkedList:
 Inverted LinkedList:
 |1|
 ```
+
+## [Stacks & Queues](./StackedQueues.java)
+```bash
+javac StackedQueue.java && java StackedQueue
+```
