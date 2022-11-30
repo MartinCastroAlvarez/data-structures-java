@@ -230,6 +230,9 @@ public class LinkedList<T> {
     //
     // Outpu:
     //  A positive integer (or zero) which is the size of the LinkedList.
+    //
+    // Complexity:
+    //  O(1): Only java native operations.
     // -------------------------------------------------------------------
     public int length() {
         return length;
@@ -249,6 +252,9 @@ public class LinkedList<T> {
     //
     // Output:
     //  No output is produced.
+    //
+    // Complexity:
+    //  O(1): Only java native operations.
     // -------------------------------------------------------------------
     public void add(T data) {
         Node<T> node = new Node<T>(data, null);
@@ -270,12 +276,15 @@ public class LinkedList<T> {
     //
     // Output:
     //  True if the list is empty. False otherwise.
+    //
+    // Complexity:
+    //  O(1): Only java native operations.
     // -------------------------------------------------------------------
     public boolean isEmpty() {
-        if (firstNode == null)
+        if (firstNode == null) {
           return true;
-        else
-          return false;
+        }
+        return false;
     }
 
     // -------------------------------------------------------------------
@@ -293,18 +302,28 @@ public class LinkedList<T> {
     //  True if the element was removed. False otherwise
     //  For example, if the position is larger than the length of the
     //  list, this function does not fail but does not return True either.
+    //
+    // Complexity:
+    //  O(N)
     // -------------------------------------------------------------------
     public boolean remove(int  i) {
         if (i < 0 || i >= length) {
             return false;
         } else if (i == 0) {
+            // Removing the first element has constant complexity.
             firstNode = firstNode.follow();
             return true;
         } else {
+            // Just a Java native operation.
             Node<T> node = firstNode;
+            // Worst case-scenario starts here.
+            // Removing the last element of the LinkedList takes N
+            // operations.
             for (int j = 0; j < i - 1; j++) {
+                // This is just another Java operation.
                 node = node.follow();
             }
+            // More java constant operations.
             node.link(node.follow().follow());
             return true;
         }
@@ -382,29 +401,28 @@ public class LinkedList<T> {
 
     // -------------------------------------------------------------------
     // Purpose:
-    //  Prints the contents of the LinkedList to STDOUT.
-    //  This function iterates over the elements of the LinkedList until
-    //  the link to the next element is null, which only happens at the
-    //  end of the list (or if the list is empty).
-    //
-    // Visibility:
-    //  Any class can print the content of the LinkedList.
+    //  Transforms the LinkedList into a String.
     //
     // Input:
     //  No input is required.
     //
     // Output:
-    //  No output is produced. However, the list is printed to STDOUT.
+    //  A string representation of the LinkedList.
+    //
+    // Visibility:
+    //  This method is public.
+    //
+    // Complexity:
+    //  O(N): Iterating over each value in the list of N elements.
     // -------------------------------------------------------------------
-    public void print() {
-        if (!isEmpty()) {
-            Node<T> node = firstNode;
-            while (node != null) {
-                System.out.print(node.toString());
-                node = node.follow();
-            }
-            System.out.println();
+    public String toString() {
+        String output = "";
+        Node<T> node = firstNode;
+        while (node != null) {
+            output += node;
+            node = node.follow();
         }
+        return output;
     }
 
     // -------------------------------------------------------------------
@@ -452,14 +470,14 @@ public class LinkedList<T> {
 
         // Printing LinkedList before inverting it.
         System.out.println("LinkedList:");
-        list.print();
+        System.out.println(list);
 
         // Inverting the LinkedList.
         list.invert();
 
         // Printing LinkedList after inverting it.
         System.out.println("Inverted LinkedList:");
-        list.print();
+        System.out.println(list);
 
     }
 }
