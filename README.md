@@ -2,6 +2,11 @@
 
 ![wallpaper.jpg](./wallpaper.jpg)
 
+## [Automata](./Automata.java)
+```bash
+python3 automata.py
+```
+
 ## [Binary Tree](./BinaryTree.java)
 ```bash
 javac BinaryTree.java && java BinaryTree
